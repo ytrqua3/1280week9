@@ -1,0 +1,42 @@
+#!/bin/bash
+
+read -p "Enter the filename: " file
+
+if test ! -f "$file"; then
+    echo "Error: File not found!";exit 1
+fi
+
+words=($(cat "$file"))
+
+while true; do
+    echo -e "\nChoose an option:"
+    echo "1) Count the number of lines in the file"
+    echo "2) Count the number of words in the file"
+    echo "3) Display the longest word in the file"
+    echo "4) Extract and display the filename (without path)"
+    echo "5) Exit"
+
+    read -p "Enter your choice: " choice
+
+    case "$choice" in
+        1)
+            line_count=$(wc -l < "$file");echo "Total lines in the file: $line_count";;
+        2)
+            word_count=$(wc -w < "$file");echo "Total words in the file: $word_count";;
+        3)
+            longest_word=""
+            for word in "${words[@]}"; do
+                if [ ${#word} -gt ${#longest_word} ]; then
+                    longest_word=$word
+                fi
+            done
+            echo "Longest word in the file: $longest_word"
+            ;;
+        4)
+            filename=$(basename "$file");echo "Filename: $filename";;
+        5)
+            echo "Exiting...";exit 0;;
+        *)
+            echo "Invalid choice! Please enter a number between 1 and 5.";;
+    esac
+done

@@ -1,51 +1,29 @@
-#to select a column
+p2
+installDemo.sh
 
-pg2
-awk '{print $1, $2 * 2}' data
+p4
+expr 1 + 1
+echo "1.5+1.5"|bc
 
-pg3
-awk '/ERROR/ {print $1,$2,$3}' logfile
-awk '/ERROR/{times=times $2" "}END {print "All times:", times}' logfile
+p5
+basename $(pwd)
 
-pg4
-awk '{total += $2} END {print "Total expenses:", total}' expenses
-awk '{names = names $1 " "} END {print "All names:", names}' names
-awk '/ERROR/ {count++} END {print "Total Errors:", count}' logfile
+p9
+installDemo.sh
 
-pg5
-awk '{gsub(/error/, "ERROR", $0); print}' logfile
+p11
+whileDemo.sh
 
-pg6
-awk 'NR==3 {print $0}' data.csv
-awk -F',' 'NF==4 {print $1}' data.csv
+p13
+pipingredirecting.sh
 
-pg7
-awk '{if ($2 > 50) print $1, "Pass"; else print $1, "Fail"}' scores
-awk '{for (i=1; i<=NF; i++) print $i}' data2
+p17
+arrayExample.sh
+array2DExample.sh
+associativeArray.sh
 
-pg8
-awk 'function square(x) { return x * x } {print $1, square($2)}' number
+p19
+shiftexample.sh
 
-EXERCISE
-awk '{sum += $2; count++} END {print "Average Score:", sum/count}' marks
-
-
-
-crontab -e
-* * * * * touch ~/week8demo/cronjobfile
-
-
-(echo a && echo b)|echo $?
-
-echo $((127 & 137))   # Bitwise AND
-echo $((127 | 137))   # Bitwise OR
-
-echo $([ 5 -gt 6 ]&&[ 4 -lt 7 ])|echo $?
-
-
-echo $([ "5" -eq "5" ])|echo $?
-echo $([ 5 -eq 5 ])|echo $?
-echo $([ "abc" -eq "abc" ])
-echo $([ "abc" == "abc" ])
-
-[ "abcd" = "abc" ] || [ "abcd" \> "abc" ] && echo "abcd >= abc"
+p24
+trapdemo.sh
